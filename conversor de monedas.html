@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Monedas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Monedas</h1>
+    <button onclick="convertirMoneda()">Convertir</button>
+    <div id="resultado"></div>
+
+    <script>
+        function convertirMoneda() {
+            // Tasas de conversión fijas (ejemplo)
+            const tasasConversion = {
+                "USD": { "EUR": 0.85, "MXN": 20, "USD": 1 },
+                "EUR": { "USD": 1.18, "MXN": 23.5, "EUR": 1 },
+                "MXN": { "USD": 0.05, "EUR": 0.042, "MXN": 1 }
+            };
+
+            // Pedir la moneda de origen
+            let monedaOrigen = prompt("Selecciona la moneda de origen (USD, EUR, MXN):").toUpperCase();
+            if (!tasasConversion[monedaOrigen]) {
+                alert("Moneda de origen no válida.");
+                return;
+            }
+
+            // Pedir la moneda de destino
+            let monedaDestino = prompt("Selecciona la moneda de destino (USD, EUR, MXN):").toUpperCase();
+            if (!tasasConversion[monedaDestino]) {
+                alert("Moneda de destino no válida.");
+                return;
+            }
+
+            // Pedir el monto a convertir
+            let monto = parseFloat(prompt(`Introduce el monto en ${monedaOrigen}:`));
+            if (isNaN(monto) || monto <= 0) {
+                alert("Monto no válido.");
+                return;
+            }
+
+            // Calcular el monto convertido
+            let tasa = tasasConversion[monedaOrigen][monedaDestino];
+            let montoConvertido = monto * tasa;
+
+            // Mostrar el resultado
+            document.getElementById("resultado").innerHTML = `${monto} ${monedaOrigen} es igual a ${montoConvertido.toFixed(2)} ${monedaDestino}.`;
+        }
+    </script>
+</body>
+</html>

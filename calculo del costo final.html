@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo del Costo Final de un Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cálculo del Costo Final de un Producto</h1>
+    
+    <!-- Formulario de entrada de datos -->
+    <label for="cantidadComprada">Cantidad Comprada:</label>
+    <input type="number" id="cantidadComprada" step="any" placeholder="Cantidad"><br><br>
+
+    <label for="tipoUnidadEntrada">Tipo de Unidad de Entrada:</label>
+    <input type="text" id="tipoUnidadEntrada" placeholder="Ej. Kg, Litros"><br><br>
+
+    <label for="cantidadPorUnidad">Cantidad por Unidad:</label>
+    <input type="number" id="cantidadPorUnidad" step="any" placeholder="Cantidad por unidad"><br><br>
+
+    <label for="tipoUnidadSalida">Tipo de Unidad de Salida:</label>
+    <input type="text" id="tipoUnidadSalida" placeholder="Ej. Paquetes, Botellas"><br><br>
+
+    <label for="costoUnitario">Costo Unitario:</label>
+    <input type="number" id="costoUnitario" step="any" placeholder="Costo por unidad"><br><br>
+
+    <label for="descuento">Descuento (%) [Opcional]:</label>
+    <input type="number" id="descuento" step="any" placeholder="Descuento en %"><br><br>
+
+    <button onclick="calcularCostoFinal()">Calcular Costo Final</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularCostoFinal() {
+            // Obtener los valores ingresados por el usuario
+            let cantidadComprada = parseFloat(document.getElementById("cantidadComprada").value);
+            let cantidadPorUnidad = parseFloat(document.getElementById("cantidadPorUnidad").value);
+            let costoUnitario = parseFloat(document.getElementById("costoUnitario").value);
+            let descuento = parseFloat(document.getElementById("descuento").value) || 0;  // Si no se introduce descuento, usar 0 por defecto
+
+            // Verificar que los valores sean válidos
+            if (isNaN(cantidadComprada) || isNaN(cantidadPorUnidad) || isNaN(costoUnitario)) {
+                alert("Por favor, introduce valores válidos.");
+                return;
+            }
+
+            // Calcular el costo total antes del descuento
+            let costoTotal = cantidadComprada * cantidadPorUnidad * costoUnitario;
+
+            // Aplicar el descuento si corresponde
+            let descuentoAplicado = (descuento / 100) * costoTotal;
+            let costoFinal = costoTotal - descuentoAplicado;
+
+            // Mostrar el resultado en la página
+            document.getElementById("resultado").innerHTML = `El costo final es $${costoFinal.toFixed(2)} después de aplicar un descuento del ${descuento}%`;
+        }
+    </script>
+</body>
+</html>

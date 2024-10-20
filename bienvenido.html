@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludo al Usuario</title>
+</head>
+<body>
+    <h1>Saludo al Usuario</h1>
+    <button onclick="saludarUsuario()">Saludar</button>
+
+    <script>
+        function saludarUsuario() {
+            // Solicitar el nombre del usuario
+            let nombre = prompt("Introduce tu nombre:");
+
+            // Verificar si el usuario introdujo un nombre
+            if (nombre) {
+                // Mostrar la alerta de bienvenida con el nombre del usuario
+                alert(`Hola, ${nombre}, ¡seas bienvenido(a)!`);
+            } else {
+                // Si el usuario no introdujo nada, mostrar un mensaje predeterminado
+                alert("No se ha introducido un nombre.");
+            }
+        }
+    </script>
+</body>
+</html>

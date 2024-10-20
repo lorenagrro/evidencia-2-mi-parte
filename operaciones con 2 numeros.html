@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones con Dos Números</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Operaciones con Dos Números</h1>
+    <button onclick="realizarOperacion()">Calcular</button>
+    <div id="resultado"></div>
+
+    <script>
+        function realizarOperacion() {
+            // Solicitar los números
+            let numero1 = parseFloat(prompt("Introduce el primer número:"));
+            let numero2 = parseFloat(prompt("Introduce el segundo número:"));
+
+            // Solicitar la operación
+            let operacion = prompt("Selecciona una operación: + (suma), - (resta), * (multiplicación), / (división)");
+
+            let resultado;
+
+            // Realizar la operación seleccionada
+            switch (operacion) {
+                case '+':
+                    resultado = numero1 + numero2;
+                    break;
+                case '-':
+                    resultado = numero1 - numero2;
+                    break;
+                case '*':
+                    resultado = numero1 * numero2;
+                    break;
+                case '/':
+                    if (numero2 !== 0) {
+                        resultado = numero1 / numero2;
+                    } else {
+                        alert("No se puede dividir entre cero.");
+                        return; // Salir de la función si hay un intento de división por cero
+                    }
+                    break;
+                default:
+                    alert("Operación no válida.");
+                    return; // Salir de la función si la operación no es válida
+            }
+
+            // Mostrar el resultado en una alerta
+            alert(`El resultado es: ${resultado}`);
+
+            // Mostrar el resultado en la página
+            document.getElementById("resultado").innerHTML = `El resultado de ${numero1} ${operacion} ${numero2} es ${resultado}.`;
+        }
+    </script>
+</body>
+</html>
